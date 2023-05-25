@@ -10,8 +10,8 @@ export interface AbilityScores {
 export interface Character {
   race: string | undefined;
   charClass: string | undefined;
-  abilityScores: AbilityScores | undefined;
-  age: number | undefined;
+  abilityScores: AbilityScores;
+  age: number;
   alignment: string | undefined;
   secondLanguage: string | undefined;
 }
