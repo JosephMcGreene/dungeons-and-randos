@@ -6,18 +6,33 @@ interface Props {
 
 export default function CharacterSection({ character }: Props) {
   return (
-    <section>
+    <section className="character-section">
       <h2>
         {character?.race} {character?.charClass}
       </h2>
       <label htmlFor="abilityScores">Ability Scores:</label>
-      <ul id="abilityScores">
-        <li>{character?.abilityScores?.strength}</li>
-        <li>{character?.abilityScores?.dexterity}</li>
-        <li>{character?.abilityScores?.constitution}</li>
-        <li>{character?.abilityScores?.intelligence}</li>
-        <li>{character?.abilityScores?.wisdom}</li>
-        <li>{character?.abilityScores?.charisma}</li>
+      <ul id="abilityScores" className="abilities-list">
+        <li className="abilities-li">
+          Strength: {character?.abilityScores?.strength}
+        </li>
+        <li className="abilities-li">
+          Dexterity: {character?.abilityScores?.dexterity}
+        </li>
+        <li className="abilities-li">
+          {" "}
+          Constitution:
+          {character?.abilityScores?.constitution}
+        </li>
+        <li className="abilities-li">
+          Intelligence:
+          {character?.abilityScores?.intelligence}
+        </li>
+        <li className="abilities-li">
+          Wisdom: {character?.abilityScores?.wisdom}
+        </li>
+        <li className="abilities-li">
+          Charisma: {character?.abilityScores?.charisma}
+        </li>
       </ul>
       <h3>Age: {character?.age}</h3>
       <h3>Alignment: {character?.alignment}</h3>
