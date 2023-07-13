@@ -30,7 +30,6 @@ export default async function generateCharacter(): Promise<Character> {
     secondLanguage,
   };
 
-  console.log(character);
   return character;
 }
 

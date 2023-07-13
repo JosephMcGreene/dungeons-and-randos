@@ -1,0 +1,28 @@
+@use "./variables" as *;
+
+.preferences-form {
+  button {
+    padding: 1.5ch 3ch;
+    display: block;
+    margin: 2rem auto 0;
+    font-family: inherit;
+    font-size: 1.25rem;
+    color: $dark-primary;
+    background-color: $light-primary;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+
+    transition-property: box-shadow;
+    transition-duration: 0.5s;
+
+    &:hover {
+      box-shadow: 0 0 0 5px $light-primary;
+    }
+
+    &:active {
+      background-color: $dark-primary;
+      color: $light-primary;
+    }
+  }
+}
