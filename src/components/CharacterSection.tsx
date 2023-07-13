@@ -1,7 +1,7 @@
 import { Character } from "../types/char-interfaces";
 
 interface Props {
-  character: Character | null;
+  character: Character | undefined;
 }
 
 export default function CharacterSection({ character }: Props) {

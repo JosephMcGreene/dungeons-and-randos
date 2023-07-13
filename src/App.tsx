@@ -7,17 +7,15 @@ import PreferencesForm from "./components/PreferencesForm";
 import CharacterSection from "./components/CharacterSection";
 
 export default function App() {
-  const [character, setCharacter] = useState<Character | (() => Character)>();
+  const [character, setCharacter] = useState<Character | undefined>();
 
-  async function applyPreferences(preferences) {
+  async function applyPreferences() {
     setCharacter(await generateCharacter());
   }
 
   return (
     <div className="App">
-      <PreferencesForm
-        onSubmit={(preferences) => applyPreferences(preferences)}
-      />
+      <PreferencesForm onSubmit={() => applyPreferences()} />
       <CharacterSection character={character} />
     </div>
   );
