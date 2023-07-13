@@ -11,7 +11,7 @@ export default function PreferencesForm({ onSubmit }: Props) {
   }
 
   return (
-    <form onSubmit={(e) => handleSubmit(e)}>
+    <form className="preferences-form" onSubmit={(e) => handleSubmit(e)}>
       <button type="submit">Make a Character</button>
     </form>
   );

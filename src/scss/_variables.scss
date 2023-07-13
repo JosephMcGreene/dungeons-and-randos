@@ -1,0 +1,18 @@
+@font-face {
+  font-family: "immortalregular";
+  src: url("../assets/fonts/immortal-webfont.woff");
+  font-weight: normal;
+  font-style: normal;
+}
+$header-font: "immortalregular";
+
+@font-face {
+  font-family: "eczarmedium";
+  src: url("../assets/fonts/Eczar-Medium-webfont.woff");
+  font-weight: normal;
+  font-style: normal;
+}
+$main-font: "eczarmedium";
+
+$dark-primary: #242424;
+$light-primary: lavender;

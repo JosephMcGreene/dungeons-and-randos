@@ -7,36 +7,34 @@ interface Props {
 export default function CharacterSection({ character }: Props) {
   return (
     <section className="character-section">
-      <h2>
+      <h1>
         {character?.race} {character?.charClass}
-      </h2>
-      <label htmlFor="abilityScores">Ability Scores:</label>
+      </h1>
       <ul id="abilityScores" className="abilities-list">
         <li className="abilities-li">
-          Strength: {character?.abilityScores?.strength}
+          Strength: <b>{character?.abilityScores?.strength}</b>
         </li>
         <li className="abilities-li">
-          Dexterity: {character?.abilityScores?.dexterity}
+          Dexterity: <b>{character?.abilityScores?.dexterity}</b>
         </li>
         <li className="abilities-li">
-          {" "}
-          Constitution:
-          {character?.abilityScores?.constitution}
+          Constitution: <b>{character?.abilityScores?.constitution}</b>
         </li>
         <li className="abilities-li">
-          Intelligence:
-          {character?.abilityScores?.intelligence}
+          Intelligence: <b>{character?.abilityScores?.intelligence}</b>
         </li>
         <li className="abilities-li">
-          Wisdom: {character?.abilityScores?.wisdom}
+          Wisdom: <b>{character?.abilityScores?.wisdom}</b>
         </li>
         <li className="abilities-li">
-          Charisma: {character?.abilityScores?.charisma}
+          Charisma: <b>{character?.abilityScores?.charisma}</b>
         </li>
       </ul>
-      <h3>Age: {character?.age}</h3>
-      <h3>Alignment: {character?.alignment}</h3>
-      <h3>Second Language: {character?.secondLanguage}</h3>
+      <div className="little-details">
+        <h3>Age: {character?.age}</h3>
+        <h3>Alignment: {character?.alignment}</h3>
+        <h3>Second Language: {character?.secondLanguage}</h3>
+      </div>
     </section>
   );
 }

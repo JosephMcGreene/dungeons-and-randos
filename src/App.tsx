@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./App.css";
+import "./scss/App.scss";
 import generateCharacter from "./helpers";
 import { Character } from "./types/char-interfaces";
 
