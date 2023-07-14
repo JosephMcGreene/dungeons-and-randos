@@ -9,7 +9,7 @@ import { APIData, AxiosResponse } from "./types/api-interfaces";
 export default async function generateCharacter(): Promise<Character> {
   const race = await randomCharacteristic("/races");
   const charClass = await randomCharacteristic("/classes");
-  const abilityScores = generateAbilityScores({
+  const abilityScores: AbilityScores = generateAbilityScores({
     strength: 0,
     dexterity: 0,
     constitution: 0,
@@ -17,7 +17,7 @@ export default async function generateCharacter(): Promise<Character> {
     wisdom: 0,
     charisma: 0,
   });
-  const age = randomNumberLessThan(100);
+  const age: number = randomNumberLessThan(100);
   const alignment = await randomCharacteristic("/alignments");
   const secondLanguage = await randomCharacteristic("/languages");
 
@@ -35,8 +35,8 @@ export default async function generateCharacter(): Promise<Character> {
 
 /**
  * A utility function that generates a random integer
- * @param {number} maxNumber number representing the highest possible number for the function call, either hard-coded or derived from an array length
- * @returns {number}         a random integer no larger than the function's argument - 1
+ * @param   {number} maxNumber number representing the highest possible number for the function call, either hard-coded or derived from an array length
+ * @returns {number}           a random integer no larger than the function's argument - 1
  */
 function randomNumberLessThan(maxNumber: number): number {
   return Math.floor(Math.random() * maxNumber);
@@ -44,8 +44,8 @@ function randomNumberLessThan(maxNumber: number): number {
 
 /**
  * fetches all kinds of character data from the DnD 5e API using various endpoints from https://www.dnd5eapi.co/api/
- * @param {string} endpoint the URL of the DnD 5e API: the base endpoint + an extension for various data needs
- * @returns {APIData}       the "data" object from axios's response object
+ * @param   {string} endpoint the URL of the DnD 5e API: the base endpoint + an extension for various data needs
+ * @returns {APIData}         the "data" object from axios's response object
  */
 export async function axiosFetch(endpoint: string): Promise<APIData> {
   const dndURL: string = "https://www.dnd5eapi.co/api/";
@@ -63,10 +63,10 @@ export async function axiosFetch(endpoint: string): Promise<APIData> {
 
 /**
  * fetches set of data that corresponds to the 5e DnD API endpoint passed as an argument and returns the name of a randomly chosen piece of data from that endpoint
- * @param {string} endpoint a string that corresponds to the type of data needed, e.g. "/races" or "/classes"
- * @returns {string}        the name of the randomly chosen resource
+ * @param   {string} endpoint a string that corresponds to the type of data needed, e.g. "/races" or "/classes"
+ * @returns {string}          the name of the randomly chosen resource
  */
-export async function randomCharacteristic(
+async function randomCharacteristic(
   endpoint: string
 ): Promise<string | undefined> {
   const data: APIData = await axiosFetch(endpoint);
@@ -79,7 +79,7 @@ export async function randomCharacteristic(
  * https://mykindofmeeple.com/how-to-roll-stats-in-dnd-pros-cons/
  * @returns {number} integer that is the sum of the 3 remaining dice rolls after "dropping" the lowest of 4 dice rolls
  */
-export function rollOneAbilityScore(): number {
+function rollOneAbilityScore(): number {
   const diceRolls: number[] = [];
 
   for (let i = 0; i < 4; i++) {
@@ -92,7 +92,12 @@ export function rollOneAbilityScore(): number {
   );
 }
 
-export function generateAbilityScores(abilities: AbilityScores): AbilityScores {
+/**
+ * Generates the values of the character's basic ability scores
+ * @param   {object<AbilityScores>} abilities an object whose keys are the six basic abilities
+ * @returns {object<AbilityScores>} an object who values represent the character's final ability scores
+ */
+function generateAbilityScores(abilities: AbilityScores): AbilityScores {
   for (const ability in abilities) {
     abilities[ability as keyof AbilityScores] = rollOneAbilityScore();
   }
