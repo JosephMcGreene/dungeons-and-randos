@@ -1,6 +1,8 @@
 @use "./variables" as *;
 
 .preferences-form {
+  perspective: 500px;
+
   button {
     padding: 1.5ch 3ch;
     display: block;
@@ -11,13 +13,14 @@
     background-color: $light-primary;
     border: none;
     border-radius: 0;
+    transform-style: preserve-3d;
     cursor: pointer;
 
-    transition-property: box-shadow;
-    transition-duration: 0.5s;
+    transition-property: transform;
+    transition-duration: 0.25s;
 
     &:hover {
-      box-shadow: 0 0 0 5px $light-primary;
+      transform: translateZ(70px);
     }
 
     &:active {

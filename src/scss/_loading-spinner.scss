@@ -1,0 +1,36 @@
+@use "./variables" as *;
+
+.loading-parent {
+  perspective: 500px;
+  perspective-origin: 15px;
+
+  .loading-spinner {
+    width: 60px;
+    height: 60px;
+    background-color: transparent;
+    margin: auto;
+    margin-top: 40px;
+    border-radius: 100vw;
+    border: 10px dotted $light-primary;
+    transform-style: preserve-3d;
+    animation: loading 3s linear infinite;
+  }
+  .loading-text {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    font-family: $header-font;
+  }
+}
+
+@keyframes loading {
+  0% {
+    transform: rotateX(0) rotateY(0);
+  }
+  50% {
+    transform: rotateX(180deg) rotateY(180deg);
+  }
+  100% {
+    transform: rotateX(360deg) rotateY(360deg);
+  }
+}
