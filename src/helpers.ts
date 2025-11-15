@@ -1,6 +1,6 @@
 import axios from "axios";
-import { Character, AbilityScores } from "./types/char-interfaces";
-import { APIData, AxiosResponse } from "./types/api-interfaces";
+import type { Character, AbilityScores } from "./types/char-interfaces";
+import type { APIData, AxiosResponse } from "./types/api-interfaces";
 
 /**
  * Uses randomized data fetched from the DnD 5e API to form a D&D character with random attributes
@@ -21,6 +21,8 @@ export default async function generateCharacter(): Promise<Character> {
   const alignment = await randomCharacteristic("/alignments");
   const secondLanguage = await randomCharacteristic("/languages");
 
+  setHighestAbililtyScore(abilityScores, charClass);
+
   let character: Character = {
     race,
     charClass,
@@ -34,7 +36,7 @@ export default async function generateCharacter(): Promise<Character> {
 }
 
 /**
- * A utility function that generates a random integer
+ * Generates a random integer that is no larger than the argument minus 1
  * @param   {number} maxNumber number representing the highest possible number for the function call, either hard-coded or derived from an array length
  * @returns {number}           a random integer no larger than the function's argument - 1
  */
@@ -44,11 +46,11 @@ function randomNumberLessThan(maxNumber: number): number {
 
 /**
  * fetches all kinds of character data from the DnD 5e API using various endpoints from https://www.dnd5eapi.co/api/
- * @param   {string} endpoint the URL of the DnD 5e API: the base endpoint + an extension for various data needs
- * @returns {APIData}         the "data" object from axios's response object
+ * @param   {string}  endpoint the URL of the DnD 5e API: the base endpoint + an extension for various data needs
+ * @returns {APIData}          the "data" object from axios's response object
  */
 export async function axiosFetch(endpoint: string): Promise<APIData> {
-  const dndURL: string = "https://www.dnd5eapi.co/api/";
+  const dndURL: string = "https://www.dnd5eapi.co/api/2014";
 
   try {
     const axiosResponse: AxiosResponse = await axios({
@@ -102,4 +104,69 @@ function generateAbilityScores(abilities: AbilityScores): AbilityScores {
     abilities[ability as keyof AbilityScores] = rollOneAbilityScore();
   }
   return abilities;
+}
+
+function highestAndLowestScore(abilityScores: AbilityScores) {
+  let lowestScoreKey: string = "";
+  let lowestScoreVal: number = 100;
+
+  let highestScoreKey: string = "";
+  let highestScoreVal: number = 0;
+
+  for (const score in abilityScores) {
+    if (abilityScores[score] < lowestScoreVal) {
+      lowestScoreKey = score;
+      lowestScoreVal = abilityScores[score];
+    }
+    if (abilityScores[score] > highestScoreVal) {
+      highestScoreKey = score;
+      highestScoreVal = abilityScores[score];
+    }
+  }
+
+  return [
+    { key: lowestScoreKey, val: lowestScoreVal },
+    { key: highestScoreKey, val: highestScoreVal },
+  ];
+}
+
+function setHighestAbililtyScore(
+  abilityScores: AbilityScores,
+  charClass: string
+) {
+  const lowestAndHighestScore = highestAndLowestScore(abilityScores);
+  const lowestScore = lowestAndHighestScore[0].key;
+  const highestScore = lowestAndHighestScore[1].key;
+
+  console.log(abilityScores[lowestScore]);
+
+  switch (charClass) {
+    case "Barbarian":
+      abilityScores[highestScore.key] = abilityScores.strength;
+      abilityScores.strength = highestScore.val;
+      abilityScores[lowestScore.key] = lowestScore.val;
+      break;
+    case "Bard":
+      break;
+    case "Cleric":
+      break;
+    case "Druid":
+      break;
+    case "Fighter":
+      break;
+    case "Monk":
+      break;
+    case "Paladin":
+      break;
+    case "Ranger":
+      break;
+    case "Rogue":
+      break;
+    case "Sorcerer":
+      break;
+    case "Warlock":
+      break;
+    case "Wizard":
+      break;
+  }
 }

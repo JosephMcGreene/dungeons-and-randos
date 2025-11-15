@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./scss/App.scss";
 import generateCharacter from "./helpers";
-import { Character } from "./types/char-interfaces";
+import type { Character } from "./types/char-interfaces";
 
 import LoadingSpinner from "./components/LoadingSpinner";
 import PreferencesForm from "./components/PreferencesForm";
