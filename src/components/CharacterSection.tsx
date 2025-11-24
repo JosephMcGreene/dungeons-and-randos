@@ -1,8 +1,8 @@
-import { Character } from "../types/char-interfaces";
+import { Character } from "../types/character";
 
-interface Props {
+type Props = {
   character: Character | undefined;
-}
+};
 
 export default function CharacterSection({ character }: Props) {
   return (
@@ -10,6 +10,7 @@ export default function CharacterSection({ character }: Props) {
       <h1>
         {character?.race} {character?.charClass}
       </h1>
+
       {character && (
         <>
           <ul id="abilityScores" className="abilities-list">
@@ -32,6 +33,7 @@ export default function CharacterSection({ character }: Props) {
               Charisma: <b>{character?.abilityScores?.charisma}</b>
             </li>
           </ul>
+
           <div className="little-details">
             <h3>Age: {character?.age}</h3>
             <h3>Alignment: {character?.alignment}</h3>

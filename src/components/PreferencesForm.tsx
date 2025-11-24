@@ -1,8 +1,8 @@
-import { SyntheticEvent, useState } from "react";
+import { SyntheticEvent } from "react";
 
-interface Props {
+type Props = {
   onSubmit: Function;
-}
+};
 
 export default function PreferencesForm({ onSubmit }: Props) {
   function handleSubmit(e: SyntheticEvent) {

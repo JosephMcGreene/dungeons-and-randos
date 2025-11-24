@@ -1,11 +1,12 @@
 import { useState } from "react";
 import "./scss/App.scss";
 import generateCharacter from "./helpers";
-import type { Character } from "./types/char-interfaces";
 
+import type { Character } from "./types/character";
+
+import CharacterSection from "./components/CharacterSection";
 import LoadingSpinner from "./components/LoadingSpinner";
 import PreferencesForm from "./components/PreferencesForm";
-import CharacterSection from "./components/CharacterSection";
 
 export default function App() {
   const [loading, setLoading] = useState<boolean>(false);
